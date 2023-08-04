@@ -90,6 +90,12 @@ It shows the differences between two commits, two branches, or a commit and the 
 
 It associates your local git repository with a git remote repository you have created.
 
+If that didn't work, you can try removing the origin (see below) and adding the link again, but adding your username with @ to the link, like this: 
+
+`git remote add origin https://vanesascode@github.com/vanesascode/project.git`
+
+If that doesn't work either, you can use a Personal Access Token [(see here)](https://www.youtube.com/watch?v=1ibmWyt8hfw)
+
 ### 🔷`git remote`
 
 With this command you can see the remote git repository your local git repository is linked to (it will propably show you 'origin', which is how you called it when you linked the two repositories). 
