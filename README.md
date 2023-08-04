@@ -122,7 +122,7 @@ To push subsequent commits to your remote repository. In case it gives you an er
 
 ### 🔷`git clone https://github.com/vanesascode/git-cheatsheet.git new-git-cheatsheet`
 
-To get the git remote repository into your computer. You add the link of the repository and if you like, you can add a name to the folder (e.g. "new-git-cheatsheet"), otherwise, it would be called like the remote repository(in this case: "git-cheatsheet"). The git repository will be different from the original. 
+To get the git remote repository into your computer. You add the link of the repository and if you like, you can add a name to the folder (e.g. "new-git-cheatsheet"), otherwise, it would be called like the remote repository(in this case: "git-cheatsheet"). The git repository will be different from the original. In the terminal, you have to be in the folder you want this new folder to be in. 
 
 ***
 
