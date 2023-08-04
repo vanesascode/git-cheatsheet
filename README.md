@@ -1,9 +1,13 @@
 ## 🌈GIT CONFIGURATION
 
-🔷 The git config command is used to set configuration options for Git. The --global flag indicates that the configuration should be applied globally, meaning it will be used for all Git repositories on your machine.
+🔷 The git config command is used to set configuration options for git. The --global flag indicates that the configuration should be applied globally, meaning it will be used for all git repositories on your machine.
 
 `git config --global user.name "Emma Paris"`
 `git config --global user.email "eparis@atlassian.com"`
+
+🔷 The credential.username property is used to store your git username for authentication purposes, such as when interacting with remote repositories that require authentication. After running this command, when git needs to authenticate with a remote repository, it will use your username (e.g. "vanesascode")
+
+`git config --global credential.username "vanesascode"`
 
 🔷 To create your own commands (for example, so you don't have to type 'commit -m' everytime, but just 'cm':
 
