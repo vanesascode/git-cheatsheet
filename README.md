@@ -1,4 +1,4 @@
-## 🌈GIT CONFIGURATION - THIS IS A CHANGE
+## 🌈GIT CONFIGURATION
 
 🔷 The git config command is used to set configuration options for git. The --global flag indicates that the configuration should be applied globally, meaning it will be used for all git repositories on your machine.
 
