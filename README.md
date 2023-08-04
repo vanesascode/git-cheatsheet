@@ -1,3 +1,28 @@
+## 🌈GIT CONFIGURATION
+
+🔷 The git config command is used to set configuration options for Git. The --global flag indicates that the configuration should be applied globally, meaning it will be used for all Git repositories on your machine.
+
+`git config --global user.name "Emma Paris"`
+`git config --global user.email "eparis@atlassian.com"`
+
+🔷 To create your own commands (for example, so you don't have to type 'commit -m' everytime, but just 'cm':
+
+`git config --global.cm "commit -m"`
+
+🔷 To have a folder to put all the stuff you don't want to be pushed to your repo, create a file and call it like this: 
+
+`.gitignore`
+
+🔷 To remove the git main folder from a repository (so every commit and everything is erased, and you have to `git init` again: 
+
+`rm -rf .git`
+
+- rm: This is the command in Unix-like systems used to remove files and directories.
+- -rf: These options are passed to the rm command.
+- r stands for "recursive" and tells the command to remove directories and their contents.
+- f stands for "force" and tells the command to ignore any warnings or prompts and proceed with the removal.
+- .git: This is the name of the directory being removed. In a Git repository, the .git directory is the heart of the repository, containing all the version control metadata, such as commit history, branches, tags, and configuration files.
+
 ## 🌈GIT COMMANDS
 
 ### 🔷`git init`
@@ -15,25 +40,43 @@ It is used to display the current state of the Git repository. It shows informat
 
 ### 🔷`git add style.css`  --  `git add "*.txt"`
 
-To have Git to track a file (e.g. style.css) or a type of file (e.g. all .txt files). This process is called Staging, or moving files to the Staging index tree, meaning our changes are ready to be committed
+To have git to track a file (e.g. style.css) or a type of file (e.g. all .txt files). This process is called Staging, or moving files to the Staging index tree, meaning our changes are ready to be committed
 
+### 🔷`git reset style.css` 
+
+It does the opposite to add. In this case it will remove the style.css file from staging. 
 
 ### 🔷`git add .`
 
 It is used to STAGE all changes in the current directory and its subdirectories for the next commit. It adds all modified files and new files to the staging area, preparing them to be included in the next commit. The `.` represents the current directory. If you only want to stage specific files or directories, you can specify their paths instead of using `.`
 
+### 🔷`git reset .`
 
-### 🔷`git commit -m`
+Takes all files from staging area back into the working area. 
+
+### 🔷`git commit -m ""`
 
 The git commit command is used to save the changes made to the files in the repository. It creates a new commit with a unique identifier that represents the changes made. When you run git commit, you need to provide a commit message that describes the changes made in the commit. This message helps others understand the purpose of the commit. The commit message can be added using the -m flag followed by the message in quotes, like this: git commit -m "Commit message here". After running git commit, the changes are permanently saved in the repository's history.
 
-### 🔷`git commit -a -m` 
+### 🔷`git commit -a -m ""` 
 
-The -a option tells Git to automatically stage all modified and deleted files before committing. This means that you don't need to explicitly use the `git add` command to stage changes before committing.
+The -a option tells git to automatically stage all modified and deleted files before committing. This means that you don't need to explicitly use the `git add` command to stage changes before committing.
+
+### 🔷`git commit -m "" --amend` 
+
+Imagine you want to add something to the latest commit, instead of creating a new one. E.g `git commit -m "version 1" --amend`
 
 ### 🔷`git log`
 
-It shows a log of all commits starting from HEAD back to the initial commit. 
+It shows a log of all commits starting from HEAD back to the initial commit (so it dosn't show more moder ones). 
+
+### 🔷`git log --all`
+
+In case you are in commit 2 (for example) and you want to see the commits after that (commit 3, 4, etc) this is the command. (You will see the word HEAD next to the commit you are in at that moment).
+
+### 🔷`git log --all --graph`
+
+It shows you the branching effect in your commit history (you'll see for example, if you went to a previous version and commited it too, in what level it is...) 
 
 ### 🔷`git diff` 
 
@@ -41,7 +84,19 @@ It shows the differences between two commits, two branches, or a commit and the 
 
 ### 🔷`git remote add origin https://github.com/vanesascode/project.git`
 
-It associates your local repository with a Github repository you have created.
+It associates your local git repository with a git remote repository you have created.
+
+### 🔷`git remote`
+
+With this command you can see the remote git repository your local git repository is linked to (it will propably show you 'origin', which is how you called it when you linked the two repositories). 
+
+### 🔷`git remote -v`
+
+It gives you all the details of your remote repository, including the URL. 
+
+### 🔷`git remote remove origin`
+
+It unlinks our local git repository with the remote git repository called 'origin' (after that, run `git remote` and you'll see there is no connection!)
 
 ### 🔷`git push -u origin main`
 
@@ -94,13 +149,29 @@ Here are a few common use cases for git checkout:
 
 - Switching branches: You can use git checkout <branch-name> to switch to a different branch in your repository. This will update your working directory to reflect the state of the selected branch (see below) 
 
-- Creating and switching to a new branch: You can use git checkout -b <new-branch-name> to create a new branch and switch to it in one command.
+- Creating and switching to a new branch: You can use git checkout -b <new-branch-name> to create a new branch and switch to it in one command. (see below) 
 
-- Discarding local changes: If you want to discard the changes made to a specific file or the entire working directory, you can use git checkout -- <file> or git checkout -- . respectively. This will restore the file(s) to the state of the last commit.
+- Discarding local changes: If you want to discard the changes made to a specific file or the entire working directory, you can use git checkout -- <file> or git checkout -- . respectively. This will restore the file(s) to the state of the last commit. (see below) 
 
 - Restoring files from a specific commit: You can use git checkout <commit-hash> -- <file> to restore a specific file from a previous commit. This will replace the current version of the file with the version from the specified commit.
 
 Please note that git checkout can be a powerful command that modifies your working directory. It's important to use it with caution, as it can discard or overwrite changes.
+
+### 🔷`git checkout -- .` 
+
+It will remove all the changes you made to your code since the latest commit, so carefull. 
+
+### 🔷`git checkout -- config.js` 
+
+It will remove all the changes you made to the file 'config.js' since the latest commit, so carefull. 
+
+### 🔷`git checkout cc0bd4098113a591acbbff63e6af55b08807e0d9`
+
+It will take you to a specific commit, using its commit 'hash'. However, if you make changes and commit them from here, you'll end up adding a new branch. 
+
+### 🔷`git checkout cc0bd4098113a591acbbff63e6af55b08807e0d9 .`
+
+It will take you to a specific commit, using its commit 'hash', but in this case, if you commit it, this will be the latest commit without creating another branch (always check with `git log --all --graph`) You can also subtitute the dot `.` by a particular file or folder. 
 
 ### 🔷`git branch` 
 
@@ -117,15 +188,15 @@ The git branch command is used to list, create, or delete branches in a Git repo
 ***
 ***
 
-Once you create a new branch, you have to switch to it to be able to work with it. So, for example, after `git branch my_version`:
+Once you create a new branch, you have to switch to it to be able to work with it. So, for example, after the creation with `git branch my_version`, run:
 
 `git checkout my_version`
 
-After committing your changes to your new branch, you should merge it with the main branch, so that the rest of our team all have the same project structure. Let's switch to the main branch:
+After committing your changes to your new branch, you should merge it with the main branch, so that the rest of our team all have the same project structure. Let's switch to the main branch first:
 
 `git checkout main`
 
-You will see that the main branch has not been altered, so the changes you did in your own branch are not reflected to the main's branch folder structure. Let's apply our changes to the master branch. So, to merge your branch my_version with the main branch:  
+You will see that the main branch has not been altered, so the changes you did in your own branch are not reflected to the main's branch folder structure. Let's apply our changes to the master branch. So, to merge your branch my_version with the main branch run:  
 
 ### 🔷`git merge my_version`
 
