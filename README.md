@@ -66,9 +66,9 @@ The git commit command is used to save the changes made to the files in the repo
 
 The -a option tells git to automatically stage all modified and deleted files before committing. This means that you don't need to explicitly use the `git add` command to stage changes before committing.
 
-### 🔷`git commit -m "" --amend` 
+### 🔷`git commit --amend -m ""` 
 
-Imagine you want to add something to the latest commit, instead of creating a new one. E.g `git commit -m "version 1" --amend`
+Imagine you want to add something to the latest commit, instead of creating a new one. E.g `git commit --amend -m "version 1"` This will overwrite the latest commit, instead of creating a new one. 
 
 ### 🔷`git log`
 
@@ -118,7 +118,11 @@ This command is typically used for the initial push of a local branch to a remot
 
 ### 🔷`git push origin main`
 
-To push subsequent commits to your remote repository. 
+To push subsequent commits to your remote repository. In case it gives you an error(you probably messed up with the branches) and you want to push anyway, then run `git push origin main -f`
+
+### 🔷`git clone https://github.com/vanesascode/git-cheatsheet.git new-git-cheatsheet`
+
+To get the git remote repository into your computer. You add the link of the repository and if you like, you can add a name to the folder (e.g. "new-git-cheatsheet"), otherwise, it would be called like the remote repository(in this case: "git-cheatsheet"). The git repository will be different from the original. 
 
 ***
 
