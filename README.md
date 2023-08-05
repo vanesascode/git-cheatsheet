@@ -122,7 +122,15 @@ To push subsequent commits to your remote repository. In case it gives you an er
 
 ### 🔷`git clone https://github.com/vanesascode/git-cheatsheet.git new-git-cheatsheet`
 
-To get the git remote repository into your computer. You add the link of the repository and if you like, you can add a name to the folder (e.g. "new-git-cheatsheet"), otherwise, it would be called like the remote repository(in this case: "git-cheatsheet"). The git repository will be different from the original. In the terminal, you have to be in the folder you want this new folder to be in. 
+To get the git remote repository into your computer. You add the link of the repository and if you like, you can add a name to the folder (e.g. "new-git-cheatsheet"), otherwise, it would be called like the remote repository(in this case: "git-cheatsheet"). In the terminal, you have to be in the folder you want this new folder to be in. The cloned repository will have a git history and you can keep pushing changes into the original remote repository. 
+
+### 🔷`git fetch`
+
+Imagine you have your remote repository more updated that your local repository, and you want to update your local repository to be like the remote one. This command will fetch the latest changes in the remote repository. Run `git --all --graph` and you will see that you have a commit ahear of your HEAD in your local repository. You'll have to sync this ahead commit into your local repository with the command `git pull origin main`. Run `git --all --graph` to see if it worked. 
+
+### 🔷`git pull origin main`
+
+(see `git fetch`)
 
 ***
 
