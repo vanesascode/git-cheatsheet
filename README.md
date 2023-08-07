@@ -1,4 +1,16 @@
-## 🌈GIT CONFIGURATION
+# GIT CHEATSHEET
+
+Notes to remember how to work with Git and Github. It includes: 
+
+1. Configuration setup
+2. General commands
+   - Commands to push to remote from local
+   - Commands to pull to local from remote
+3. Branching and merging
+   - Merge conflicts
+4. The Feature Branch Workflow
+
+## 1. GIT CONFIGURATION
 
 🔷 The git config command is used to set configuration options for git. The --global flag indicates that the configuration should be applied globally, meaning it will be used for all git repositories on your machine.
 
@@ -42,7 +54,7 @@
 ***
 ***
 
-## 🌈GIT COMMANDS
+## 2. GENERAL COMMANDS
 
 ### 🔷`git init`
 
@@ -149,7 +161,7 @@ It gives you all the details of your remote repository, including the URL.
 
 It unlinks our local git repository with the remote git repository called 'origin' (after that, run `git remote` and you'll see there is no connection!)
 
-## 🟡 From local to remote: 
+### 🟡 From local to remote: 
 
 ### 🔷`git push -u origin main`
 
@@ -163,7 +175,7 @@ This command is typically used for the initial push of a local branch to a remot
 
 To push subsequent commits to your remote repository. In case it gives you an error(you probably messed up with the branches) and you want to push anyway, then run `git push origin main -f`
 
-## 🟡 From remote to local: 
+### 🟡 From remote to local: 
 
 ### 🔷`git clone https://github.com/vanesascode/git-cheatsheet.git new-git-cheatsheet`
 
@@ -187,7 +199,7 @@ Imagine you have your remote repository more updated that your local repository,
 (see `git fetch`)
 
 
-## 🟡 Branching and Merging: 
+## 3. Branching and Merging: 
 
 
 ### 🔷`git branch` 
@@ -212,7 +224,7 @@ It is used to rename the current branch to a new name.
 
 It is used to switch to a different branch in your repository. This will update your working directory to reflect the state of the selected branch. 
 
-Once you create a new branch, you have to switch to it to be able to work with it. Do it with this command. 
+👉 Once you create a new branch, you have to switch to it to be able to work with it. Do it with this command. 
 
 ### 🔷`git checkout -b <new-branch-name>` 
 
@@ -227,5 +239,102 @@ After committing your changes to your new branch, you may want to merge it with 
 The git merge command affects the branch you are currently on. It integrates the changes from the specified source branch into the current branch. So, imagine you are in the main branch right now, and you want to merge the changes of another branch. You run this command then, and add a name to the commit with the -m flag. 
 
 Something you'll want to do at this moment is to upload the merged project into the remote repository. Remember to run `git push` then. 
+
+![branching-example](https://github.com/vanesascode/git-cheatsheet/assets/131259155/95d9814c-5aa5-416d-b984-2b1cbe9e143d)
+
+Pic from [SuperSimpleDev](https://www.youtube.com/watch?v=Q1kHG842HoI&t=35s)
+
+### 🟡 Merge Conflicts: 
+
+A merge conflict in Git occurs when there are conflicting changes made to the same part of a file or multiple files that are being merged. This typically happens when two different branches have made conflicting modifications to the same lines of code. Git is unable to automatically determine which changes should be preserved, so it marks the conflicting sections and asks the user to manually resolve the conflict. Resolving a merge conflict involves reviewing the conflicting changes, deciding which changes to keep, and making the necessary adjustments to the code.
+
+![merge-conflict-1](https://github.com/vanesascode/git-cheatsheet/assets/131259155/6b4b648b-152d-46c4-8018-2d44dc286236)
+
+Pic from [SuperSimpleDev](https://www.youtube.com/watch?v=Q1kHG842HoI&t=35s)
+
+In your coding you'll have to choose the lines you want to keep. You have to erase the ones you don't want. Basically you have to tell git what is the final code. 
+
+And then, you'll have to make a new commit. Remember to `git log --all --graph` all the time to keep seeing what's going on. 
+
+## 3. Feature Branch Workflow: 
+
+The feature branch workflow is a Git branching strategy where each new feature or task is developed in a separate branch. Here's a simplified summary of the steps involved: 
+ 
+1. Create a new branch for the feature/task. 
+2. Work on implementing the feature/task in this branch. 
+3. Regularly commit changes to track progress. 
+4. Keep the branch up to date with the latest changes from the main branch. 
+5. Test and review the feature/task. 
+6. Merge the feature branch back into the main branch. 
+ 
+This workflow allows for independent development, easy collaboration, and helps maintain a clean main branch.
+
+***
+
+#### EXAMPLE: 
+
+👉 You have been working on a new feature using the main branch of a local repository. What's next: 
+
+◻ `git branch new-feature`
+
+◻ `git log --all --graph` 
+
+◻ `git checkout new-feature`
+
+◻ `git log --all --graph`
+
+◻ `git add .`
+
+◻ `git commit -m "new feature"`
+
+◻ `git log --all --graph`
+
+👉 You want to upload both versions into a remote repository. You create a Github repository. What's next:
+
+◻ `git remote add origin <url>`
+
+◻ `git checkout main` (or master, check with `git log --all --graph`)
+
+◻ `git push origin main` 
+
+◻ Check in the github webpage that it's correctly uploaded. 
+
+◻ `git checkout new-feature`
+
+◻ `git push origin new-feature` 
+
+◻ Check in the github remote repository it's all correct and you have the 2 branches.  
+
+👉 You want your team to review your branch before merging it with the main branch. What's next: 
+
+◻ Check in the github remote repository. It probably gives you a message button you have to click: 'Compare and pull request' or you have to create a pull request yourself (then, choose the main and the branch to be compared) Write a good description.
+
+◻ Copy the url of this pull request and send it to your team to be reviewed. There, in the different tabs, there's all the information about the commits, the code itself, etc.
+
+◻ If they don't like your code, they'll probably send you a message you will see in the conversation tab. If they liked it and want to merge it, they will do it with the button 'Merge pull request' in the same pull request webpage. You'll receive a notification. 
+
+👉 You want to update the local repository after the merge. What's next:
+
+◻ `git fetch`
+
+◻ `git log --all --graph` (see that above your HEAD, there's the merge that took place in the remote repository)
+
+◻ `git checkout main`
+
+◻ `git pull origin main`
+
+◻ `git log --all --graph` (see that our HEAD is at the same level as the origin remote repository) 
+
+◻ `git branch -D new-feature` (if you don't need that branch anymore) 
+
+👉 The reviewer wants to solve a merge conflict when you are working with other collegues that are merging their branches in the main branch too: 
+
+![merge-conflict-2](https://github.com/vanesascode/git-cheatsheet/assets/131259155/38bd72ab-8cff-427e-8ccf-f037c0d592c3)
+
+Pic from [SuperSimpleDev](https://www.youtube.com/watch?v=Q1kHG842HoI&t=35s)
+
+The reviewer will find the conflict when, after merging a pull request, wants to merge another pull request but Github tells them: "this branch has conflicts that must be resolved". Below that, the reviewer can open the "web editor" and erase everything except from what they want the final code to keep. 
+
+
 
 
