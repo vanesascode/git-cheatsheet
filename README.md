@@ -36,6 +36,9 @@
 - f stands for "force" and tells the command to ignore any warnings or prompts and proceed with the removal.
 - .git: This is the name of the directory being removed. In a Git repository, the .git directory is the heart of the repository, containing all the version control metadata, such as commit history, branches, tags, and configuration files.
 
+🔷 HEAD = points to the branch we are currently working on.
+
+
 ***
 ***
 
@@ -81,6 +84,22 @@ The -a option tells git to automatically stage all modified and deleted files be
 ### 🔷`git commit --amend -m ""` 
 
 Imagine you want to add something to the latest commit, instead of creating a new one. E.g `git commit --amend -m "version 1"` This will overwrite the latest commit, instead of creating a new one. 
+
+### 🔷`git checkout -- .` 
+
+It will remove all the changes you made to your code since the latest commit, so carefull. 
+
+### 🔷`git checkout -- config.js` 
+
+It will remove all the changes you made to the file 'config.js' since the latest commit, so carefull. 
+
+### 🔷`git checkout cc0bd4098113a591acbbff63e6af55b08807e0d9`
+
+It will take you to a specific commit, using its commit 'hash'. However, if you make changes and commit them from here, you'll end up adding a new branch. 
+
+### 🔷`git checkout cc0bd4098113a591acbbff63e6af55b08807e0d9 .`
+
+It will take you to a specific commit, using its commit 'hash', but in this case, if you commit it, this will be the latest commit without creating another branch (always check with `git log --all --graph`) You can also subtitute the dot `.` by a particular file or folder.
 
 ### 🔷`git log`
 
@@ -167,81 +186,46 @@ Imagine you have your remote repository more updated that your local repository,
 
 (see `git fetch`)
 
-***
-
-### 🔷`git pull origin branch-name`
-
-If you want to pull changes from a specific remote branch other than the default one, you can specify the branch name as an argument. 
 
 ## 🟡 Branching and Merging: 
 
-### 🔷`git checkout` 
-
-It is used to switch between different branches or restore files from a specific commit or branch.
-
-Here are a few common use cases for git checkout:
-
-- Switching branches: You can use git checkout <branch-name> to switch to a different branch in your repository. This will update your working directory to reflect the state of the selected branch (see below) 
-
-- Creating and switching to a new branch: You can use git checkout -b <new-branch-name> to create a new branch and switch to it in one command. (see below) 
-
-- Discarding local changes: If you want to discard the changes made to a specific file or the entire working directory, you can use git checkout -- <file> or git checkout -- . respectively. This will restore the file(s) to the state of the last commit. (see below) 
-
-- Restoring files from a specific commit: You can use git checkout <commit-hash> -- <file> to restore a specific file from a previous commit. This will replace the current version of the file with the version from the specified commit.
-
-Please note that git checkout can be a powerful command that modifies your working directory. It's important to use it with caution, as it can discard or overwrite changes.
-
-### 🔷`git checkout -- .` 
-
-It will remove all the changes you made to your code since the latest commit, so carefull. 
-
-### 🔷`git checkout -- config.js` 
-
-It will remove all the changes you made to the file 'config.js' since the latest commit, so carefull. 
-
-### 🔷`git checkout cc0bd4098113a591acbbff63e6af55b08807e0d9`
-
-It will take you to a specific commit, using its commit 'hash'. However, if you make changes and commit them from here, you'll end up adding a new branch. 
-
-### 🔷`git checkout cc0bd4098113a591acbbff63e6af55b08807e0d9 .`
-
-It will take you to a specific commit, using its commit 'hash', but in this case, if you commit it, this will be the latest commit without creating another branch (always check with `git log --all --graph`) You can also subtitute the dot `.` by a particular file or folder. 
 
 ### 🔷`git branch` 
 
-The git branch command is used to list, create, or delete branches in a Git repository.
+It will list all the branches in the repository. The current branch will be indicated with an asterisk (*). 
 
-- When you run git branch without any additional arguments, it will list all the branches in the repository. The current branch will be indicated with an asterisk (*).
+### 🔷`git branch <branch-name>`
 
-- To create a new branch, you can use `git branch <branch-name>` This will create a new branch with the specified name based on the current commit or the commit that the current branch is pointing to.
+This will create a new branch with the specified name based on the current commit or the commit that the current branch is pointing to.
 
-- To delete a branch, you can use git branch -d <branch-name>. This will delete the specified branch. However, you cannot delete the branch you are currently on. If you want to delete a branch forcefully, you can use git branch -D <branch-name>.
+### 🔷`git branch -d <branch-name>`
 
-- Additionally, you can use the git branch -m <new-branch-name> command to rename the current branch to a new name.
+This will delete the specified branch. However, you cannot delete the branch you are currently on. If you want to delete a branch forcefully, you can use `git branch -D <branch-name>`
 
-***
-***
+It is a good practice to delete unused branches. As our project increases, having many branches can be hard to maintain and many of the older branches can be left behind in updates.
 
-Once you create a new branch, you have to switch to it to be able to work with it. So, for example, after the creation with `git branch my_version`, run:
+### 🔷`git branch -m <new-branch-name>` 
 
-`git checkout my_version`
+It is used to rename the current branch to a new name.
 
-After committing your changes to your new branch, you should merge it with the main branch, so that the rest of our team all have the same project structure. Let's switch to the main branch first:
+### 🔷`git checkout <branch-name>`
 
-`git checkout main`
+It is used to switch to a different branch in your repository. This will update your working directory to reflect the state of the selected branch. 
 
-You will see that the main branch has not been altered, so the changes you did in your own branch are not reflected to the main's branch folder structure. Let's apply our changes to the master branch. So, to merge your branch my_version with the main branch run:  
+Once you create a new branch, you have to switch to it to be able to work with it. Do it with this command. 
 
-### 🔷`git merge my_version`
+### 🔷`git checkout -b <new-branch-name>` 
 
-The git merge command affects the branch you are currently on. It integrates the changes from the specified source branch into the current branch.
+To create a new branch and switch to it in one command. 
 
-***
+### 🔷`git checkout main`
 
-So, if you're not going to be using your my_version branch anymore, let's delete it. It is a good practice to delete unused branches, as, as our project increases, having many branches can be hard to maintain and many of the older branches can be left behind in updates:
+After committing your changes to your new branch, you may want to merge it with the main branch, so that the rest of our team all have the same project structure. You have to switch to the main branch with this command. You will see that the main branch has not been altered, so the changes you did in your own branch are not reflected to the main's branch folder structure. To apply your changes to the main branch you have to merge your <branch-name> with the main branch using the following command:   
 
-`git branch -d my_version`
+### 🔷`git merge <branch-name> -m ""`
 
-So, now, the last thing is to share the repository with our team so that we can all work in it. Let's upload our repository to GitHub.
+The git merge command affects the branch you are currently on. It integrates the changes from the specified source branch into the current branch. So, imagine you are in the main branch right now, and you want to merge the changes of another branch. You run this command then, and add a name to the commit with the -m flag. 
 
-`git push`
+Something you'll want to do at this moment is to upload the merged project into the remote repository. Remember to run `git push` then. 
+
+
